@@ -1,6 +1,7 @@
 import BlogPost from '@/components/BlogPost';
 import { getAllPosts } from '@/lib/getAllPosts';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import React from 'react';
 
 type Params = {
@@ -15,6 +16,16 @@ export const generateMetadata = async ({
   };
 };
 
+export const generateStaticParams = async () => {
+  const posts = await getAllPosts();
+
+  if (!posts) return [];
+
+  const tags = new Set(posts.map((post) => post.tags).flat());
+
+  return Array.from(tags).map((tag) => ({ tag }));
+};
+
 const TagPage = async ({ params }: Params) => {
   const posts = await getAllPosts();
   const filteredPosts = posts.filter((post) => post.tags.includes(params.tag));
@@ -27,11 +38,20 @@ const TagPage = async ({ params }: Params) => {
         </span>{' '}
         Posts
       </h1>
-      <section className='grid grid-cols-1 md:grid-cols-3 gap-5'>
-        {filteredPosts.map((post) => {
-          return <BlogPost key={post.id} post={post} />;
-        })}
-      </section>
+      {filteredPosts.length >= 1 ? (
+        <section className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+          {filteredPosts.map((post) => {
+            return <BlogPost key={post.id} post={post} />;
+          })}
+        </section>
+      ) : (
+        <>
+          <p>Sorry, no posts for that tag.</p>
+          <Link href='/' className='bg-[#2A2A28] rounded-md py-[0.12rem] px-1'>
+            Back to Home
+          </Link>
+        </>
+      )}
     </>
   );
 };
