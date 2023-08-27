@@ -65,6 +65,8 @@ const BlogSinglepage = async ({ params }: Params) => {
         height={500}
         width={500}
         className='rounded-t-md mb-4'
+        blurDataURL={`https://raw.githubusercontent.com/siemen-subbaiah/mdx-blog-posts/main/${imgKey}`}
+        placeholder='blur'
       />
       <p className='mb-5'>{frontmatter.date}</p>
       <section className='grid grid-cols-1 md:grid-cols-12'>

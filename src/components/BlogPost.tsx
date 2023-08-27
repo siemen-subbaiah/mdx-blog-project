@@ -17,6 +17,8 @@ const BlogPost = ({ post }: { post: PostMeta }) => {
             fill
             className='rounded-t-md'
             style={{ objectFit: 'cover' }}
+            blurDataURL={`https://raw.githubusercontent.com/siemen-subbaiah/mdx-blog-posts/main/${imgKey}`}
+            placeholder='blur'
           />
         </div>
         <div className='p-3 my-2'>
