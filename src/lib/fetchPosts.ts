@@ -5,7 +5,7 @@ export const getSinglePostFromGithub = async (
     `https://raw.githubusercontent.com/siemen-subbaiah/mdx-blog-posts/main/${filePath}`,
     {
       next: {
-        revalidate: 10,
+        revalidate: 1,
       },
       headers: {
         Accept: 'application/vnd.github+json',
@@ -23,7 +23,7 @@ export const getAllPostsFromGithub = async (): Promise<GithubTree> => {
     'https://api.github.com/repos/siemen-subbaiah/mdx-blog-posts/git/trees/main?recursive=1',
     {
       next: {
-        revalidate: 10,
+        revalidate: 1,
       },
       headers: {
         Accept: 'application/vnd.github+json',

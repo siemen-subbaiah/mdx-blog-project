@@ -47,7 +47,10 @@ const TagPage = async ({ params }: Params) => {
       ) : (
         <>
           <p>Sorry, no posts for that tag.</p>
-          <Link href='/' className='bg-[#2A2A28] rounded-md py-[0.12rem] px-1'>
+          <Link
+            href='/'
+            className='bg-[#2A2A28] rounded-md py-[0.12rem] px-1 mt-2'
+          >
             Back to Home
           </Link>
         </>
